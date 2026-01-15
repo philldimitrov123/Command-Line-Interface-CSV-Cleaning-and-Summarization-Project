@@ -3,12 +3,18 @@ import pandas as pd
 df = pd.read_csv("cleaned_gdp_data.csv")
 
 def get_summary_statistics(df):
-    name = input("""                                  ---Welcome to the GDP per Capita Database!---
-    
-    This database holds historic GDP per capita data from 1960 all the way to 2024! To get the gdp per capita summary of your desired country, 
-    enter the country's name: """
-                 
+    name = input("""
+╔════════════════════════════════════════════════════════════════╗
+║         Welcome to the GDP per Capita Database!                ║
+╚════════════════════════════════════════════════════════════════╝
+
+This database holds historic GDP per capita data from 1960 to 2024!
+
+Enter the country name to get GDP per capita summary: """
                  ).title()
+    
+    if name not in dict(df['Country Name']).values():
+        raise ValueError("Please enter a valid country name")
     
     country = df[df['Country Name'] == name]
     mean_gdp = country.iloc[:,6:].mean(axis=1)
@@ -42,3 +48,4 @@ get_summary_statistics(df)
 
 
     
+
