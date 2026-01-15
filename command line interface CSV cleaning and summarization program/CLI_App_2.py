@@ -14,7 +14,10 @@ Enter the country name to get GDP per capita summary: """
                  ).title()
     
     if name not in dict(df['Country Name']).values():
-        raise ValueError("Please enter a valid country name")
+        raise ValueError("""Please enter a valid country name, make sure you input
+            the countries official name. e.g Russia ---> Russian Federation
+                         
+                          """)
     
     country = df[df['Country Name'] == name]
     mean_gdp = country.iloc[:,6:].mean(axis=1)
@@ -48,4 +51,5 @@ get_summary_statistics(df)
 
 
     
+
 
